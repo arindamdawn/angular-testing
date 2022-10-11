@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-button',
+  selector: 'app-timeline',
   template: `
     <p>
-      button works!
+      timeline works!
     </p>
   `,
   styles: [
   ]
 })
-export class ButtonComponent implements OnInit {
+export class TimelineComponent implements OnInit {
 
   constructor() { }
 

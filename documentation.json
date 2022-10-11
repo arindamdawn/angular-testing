@@ -14,7 +14,29 @@
             "methods": []
         }
     ],
-    "injectables": [],
+    "injectables": [
+        {
+            "name": "ThemeService",
+            "id": "injectable-ThemeService-568268abb6e8437b2cf5b35e1a56730145d6480f4f2f41f0f283c091b7e5383c3a6537ef656a1a06f49fae44ec82df5bf2df21eadcd0dd34d0244fc0ea03b85d",
+            "file": "src/app/design-system/theme/theme.service.ts",
+            "properties": [],
+            "methods": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class ThemeService {\n\n  constructor() { }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 6
+            },
+            "type": "injectable"
+        }
+    ],
     "guards": [],
     "interceptors": [],
     "classes": [],
@@ -631,21 +653,21 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.prod.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\n  production: true\n}"
-            },
-            {
-                "name": "environment",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/environments/environment.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: true\n}"
             },
             {
                 "name": "Large",
@@ -765,6 +787,16 @@
                 "deprecationMessage": "",
                 "type": "Story<Page>",
                 "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "THEMES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/design-system/theme/theme.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  light: {\r\n    primaryColor: 'hsl(185, 57%, 35%)',\r\n    secondaryColor: 'hsl(0, 0%, 22%)',\r\n    textOnPrimary: 'hsl(0, 0%, 100%)',\r\n    textOnSecondary: 'hsl(0, 0%, 90%)',\r\n    background: 'hsl(0, 0%, 100%)',\r\n  },\r\n  dark: {\r\n    primaryColor: 'hsl(168deg 100% 29%)',\r\n    secondaryColor: 'hsl(161deg 94% 13%)',\r\n    textOnPrimary: 'hsl(0, 0%, 100%)',\r\n    textOnSecondary: 'hsl(0, 0%, 100%)',\r\n    background: 'hsl(0, 0%, 10%)',\r\n  },\r\n}"
             }
         ],
         "functions": [],
@@ -792,18 +824,6 @@
                     "type": "literal type"
                 }
             ],
-            "src/environments/environment.prod.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/environments/environment.prod.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\n  production: true\n}"
-                }
-            ],
             "src/environments/environment.ts": [
                 {
                     "name": "environment",
@@ -814,6 +834,18 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\n  production: false\n}"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true\n}"
                 }
             ],
             "src/stories/Button.stories.ts": [
@@ -931,6 +963,18 @@
                     "type": "Story<Page>",
                     "defaultValue": "(args: Page) => ({\n  props: args,\n})"
                 }
+            ],
+            "src/app/design-system/theme/theme.ts": [
+                {
+                    "name": "THEMES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/design-system/theme/theme.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  light: {\r\n    primaryColor: 'hsl(185, 57%, 35%)',\r\n    secondaryColor: 'hsl(0, 0%, 22%)',\r\n    textOnPrimary: 'hsl(0, 0%, 100%)',\r\n    textOnSecondary: 'hsl(0, 0%, 90%)',\r\n    background: 'hsl(0, 0%, 100%)',\r\n  },\r\n  dark: {\r\n    primaryColor: 'hsl(168deg 100% 29%)',\r\n    secondaryColor: 'hsl(161deg 94% 13%)',\r\n    textOnPrimary: 'hsl(0, 0%, 100%)',\r\n    textOnSecondary: 'hsl(0, 0%, 100%)',\r\n    background: 'hsl(0, 0%, 10%)',\r\n  },\r\n}"
+                }
             ]
         },
         "groupedFunctions": {},
@@ -980,6 +1024,25 @@
                 "name": "SidebarComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/design-system/theme/theme.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "ThemeService",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/design-system/theme/theme.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "THEMES",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
