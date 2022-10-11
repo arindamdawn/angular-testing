@@ -1,20 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-timeline',
-  template: `
-    <p>
-      timeline works!
-    </p>
-  `,
-  styles: [
-  ]
+  selector: 'f-timeline',
+  template: ` <p-timeline></p-timeline> `,
+  styles: [],
 })
 export class TimelineComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
