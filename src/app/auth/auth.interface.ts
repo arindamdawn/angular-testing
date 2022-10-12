@@ -1,22 +1,11 @@
-import { Observable } from 'rxjs';
+import { RolePermissions } from "../access-control/access-control";
 
 export interface Auth {
-  login: () => void;
-  logout: () => void;
-  fetchFusionAccessToken: () => Observable<string>;
-}
-
-export interface LoggedInUser {
-  email: string;
-  email_verified: boolean;
-  family_name: string;
-  given_name: string;
-  locale: string;
-  name: string;
-  preferred_username: string;
-  sub: string;
-  updated_at: number;
-  zoneinfo: string;
+  runInitialLoginSequence(): Promise<void>;
+  login(): void;
+  logout(): void;
+  refresh(): void;
+  hasValidToken(): boolean;
 }
 
 export interface UserJWTData {
@@ -31,5 +20,9 @@ export interface UserJWTData {
   nameid: string;
   nbf: number;
   pos: string;
-  roles: string[];
+  roles: RolePermissions[];
 }
+export type LoggedInUser = Pick<
+  UserJWTData,
+  'dept' | 'email' | 'roles' | 'name' | 'id' | 'exp' | 'pos' | 'nameid'
+>;

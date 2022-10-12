@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderInterceptor } from './interceptors/header.interceptor';
+import { AccessControlDirective } from './access-control/access-control.directive';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent],
+  declarations: [AppComponent, DashboardComponent, AccessControlDirective],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

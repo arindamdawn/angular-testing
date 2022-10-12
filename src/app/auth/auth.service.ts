@@ -10,7 +10,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { Auth, UserJWTData } from './auth.interface';
+import { Auth, LoggedInUser, UserJWTData } from './auth.interface';
 import { OAuthService, OAuthErrorEvent } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
 import { ApiService } from '../api/api.service';
@@ -22,6 +22,13 @@ import jwtDecode from 'jwt-decode';
   providedIn: 'root',
 })
 export class AuthService implements Auth {
+  private loggedInUserSubject$ = new BehaviorSubject<LoggedInUser | null>(null);
+  loggedInUser$ = this.loggedInUserSubject$.asObservable();
+
+  get loggedInUserSnapshot() {
+    return this.loggedInUserSubject$.value;
+  }
+
   private isAuthenticatedSubject$ = new BehaviorSubject<boolean>(false);
   isAuthenticated$ = this.isAuthenticatedSubject$
     .asObservable()
@@ -40,7 +47,7 @@ export class AuthService implements Auth {
       tap(({ accessToken }) => {
         if (accessToken) {
           const decodedToken: UserJWTData = jwtDecode(accessToken);
-          console.log(decodedToken, 'decoded');
+          this.loggedInUserSubject$.next(decodedToken);
         }
       })
     )
@@ -64,9 +71,6 @@ export class AuthService implements Auth {
     this.isDoneLoading$,
   ]).pipe(map((values) => values.every((b) => b)));
 
-  fetchFusionAccessToken() {
-    return EMPTY;
-  }
   constructor(
     private oauthService: OAuthService,
     private router: Router,
@@ -171,7 +175,7 @@ export class AuthService implements Auth {
   }
 
   public logout() {
-    this.oauthService.logOut();
+    this.oauthService.revokeTokenAndLogout();
   }
   public refresh() {
     this.oauthService.silentRefresh();

@@ -3,9 +3,16 @@ import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
-  template: ` <button (click)="logout()">Logout</button> `,
+  template: `
+    <button
+      (click)="logout()"
+      *hasPermission="['Users.Management', 'Users.ManageOrphans']"
+    >
+      Logout
+    </button>
+  `,
   styles: [
-    `
+  `
       button {
         cursor: pointer;
       }
