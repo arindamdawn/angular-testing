@@ -2,7 +2,6 @@ import { Inject, Injectable } from '@angular/core';
 import {
   BehaviorSubject,
   combineLatest,
-  EMPTY,
   filter,
   map,
   Observable,
