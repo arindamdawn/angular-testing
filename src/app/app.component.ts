@@ -5,7 +5,20 @@ import { AuthService } from './auth/auth.service';
 @Component({
   selector: 'app-root',
   template: `
-    <button (click)="logout()">Logout</button><router-outlet></router-outlet>
+    <div *ngIf="isAuthenticated; else launcher">Logged In</div>
+    <router-outlet></router-outlet>
+    <ng-template #launcher>
+      <div
+        class="flex justify-content-center align-items-center min-h-screen flex-column"
+      >
+        <div>
+          <!-- <f-spinner fill="#fff"></f-spinner> -->
+        </div>
+        <div class="launcher ">
+          <img src="assets/images/fusion-logo.png" />
+        </div>
+      </div>
+    </ng-template>
   `,
   styles: [
     `
@@ -17,8 +30,8 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent {
   constructor(private authService: AuthService, private router: Router) {
-    if(this.authService.hasValidToken()){
-      this.redirectToDashboard()
+    if (this.authService.hasValidToken()) {
+      this.redirectToDashboard();
     }
   }
 
@@ -26,7 +39,7 @@ export class AppComponent {
     this.router.navigateByUrl('/dashboard');
   }
 
-  logout() {
-    this.authService.logout();
+  get isAuthenticated() {
+    return this.authService.hasValidToken();
   }
 }
