@@ -1,4 +1,4 @@
-export type RolePermissions =
+export type RolePermission =
   | 'Users.Management'
   | 'Users.AddUsersAndAssignRoles'
   | 'Users.ManageOrphans'

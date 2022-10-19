@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { RolePermissions } from '../access-control/access-control';
+import { RolePermission } from '../access-control/access-control';
 
 @Injectable({
   providedIn: 'root',
@@ -8,13 +8,13 @@ import { RolePermissions } from '../access-control/access-control';
 export class AccessControlService {
   constructor(private authService: AuthService) {}
 
-  hasPermission(permission: RolePermissions) {
+  hasPermission(permission: RolePermission) {
     const currentUser = this.authService.loggedInUserSnapshot;
     if (!currentUser) return false;
-    return currentUser.roles.indexOf(permission) > -1;
+    return currentUser.roles.some((_) => permission);
   }
 
-  hasAllPermissions = (permissions: RolePermissions[]) =>
+  hasAllPermissions = (permissions: RolePermission[]) =>
     permissions.every((permission) => {
       const currentUser = this.authService.loggedInUserSnapshot;
       currentUser?.roles.includes(permission);

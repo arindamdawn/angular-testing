@@ -6,7 +6,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { RolePermissions } from './access-control';
+import { RolePermission } from './access-control';
 
 type LOGICAL_OPERATOR = 'AND' | 'OR';
 
@@ -14,7 +14,7 @@ type LOGICAL_OPERATOR = 'AND' | 'OR';
   selector: '[hasPermission]',
 })
 export class AccessControlDirective implements OnInit {
-  private permissions: RolePermissions[] = [];
+  private permissions: RolePermission[] = [];
   private logicalOperator: LOGICAL_OPERATOR = 'AND';
   private isHidden = true;
   constructor(
@@ -24,7 +24,7 @@ export class AccessControlDirective implements OnInit {
   ) {}
 
   @Input()
-  set hasPermission(permissions: RolePermissions[]) {
+  set hasPermission(permissions: RolePermission[]) {
     this.permissions = permissions;
   }
 
@@ -58,10 +58,9 @@ export class AccessControlDirective implements OnInit {
         currentUser.roles.includes(permission)
       );
 
-      const hasAtleastOnePermission =
-        this.permissions.filter(
-          (permission) => currentUser.roles.indexOf(permission) > -1
-        ).length > 0;
+      const hasAtleastOnePermission = this.permissions.some((permission) =>
+        currentUser.roles.includes(permission)
+      );
 
       if (this.logicalOperator === 'OR' && !hasAtleastOnePermission) {
         return false;

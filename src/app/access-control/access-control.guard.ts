@@ -6,7 +6,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { RolePermissions } from './access-control';
+import { RolePermission } from './access-control';
 import { AccessControlService } from './access-control.service';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class AccessControlGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const permittedRoles = route.data['roles'] as RolePermissions[];
+    const permittedRoles = route.data['roles'] as RolePermission[];
     return this.accessControlService.hasAllPermissions(permittedRoles);
   }
 }
